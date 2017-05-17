@@ -19,6 +19,10 @@ class PatternParam {
         this.pattern = pattern
     }
 
+    void pattern(String pattern) {
+        this.pattern = pattern
+    }
+
     ExcludeTable toExcludeTable() {
         ExcludeTable table = new ExcludeTable()
         table.pattern = pattern

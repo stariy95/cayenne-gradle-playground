@@ -1,7 +1,7 @@
 package org.apache.cayenne.tools.model
 
-import org.apache.cayenne.dbsync.reverse.dbimport.Catalog
 import org.apache.cayenne.dbsync.reverse.dbimport.ReverseEngineering
+import org.apache.cayenne.dbsync.reverse.dbimport.Schema
 import org.gradle.util.ConfigureUtil
 
 /**
@@ -93,7 +93,7 @@ class DbImportConfig extends SchemaContainer {
      * <li> "SYNONYM"
      * </ul>
      */
-    Collection<String> tableTypes
+    Collection<String> tableTypes = new LinkedList<>()
 
     Collection<SchemaContainer> catalogs = new LinkedList<>()
 
@@ -119,7 +119,8 @@ class DbImportConfig extends SchemaContainer {
         reverseEngineering.useJava7Types = useJava7Types
         reverseEngineering.tableTypes = tableTypes
 
-        catalogs.each {reverseEngineering.addCatalog(it.fillContainer(new Catalog()))}
+        catalogs.each {reverseEngineering.addCatalog(it.toCatalog())}
+        schemas.each {reverseEngineering.addSchema(it.fillContainer(new Schema()))}
 
         fillContainer(reverseEngineering)
 

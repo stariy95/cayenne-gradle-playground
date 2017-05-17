@@ -8,10 +8,12 @@ import org.gradle.api.Project
 class GradlePlugin implements Plugin<Project> {
 
     void apply(Project project) {
+        // Add DSL extension
         project.extensions.create("cayenne", GradleCayenneExtension, project)
 
-        project.task('cgen',      type: GradleCgenTask)
-        project.task('cdbimport', type: GradleDbImportTask)
-        project.task('cdbgen',    type: GradleCdbgenTask)
+        // Register tasks
+        project.task('cgen',      type: CgenTask)
+        project.task('cdbimport', type: DbImportTask)
+        project.task('cdbgen',    type: CdbgenTask)
     }
 }

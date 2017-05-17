@@ -2,19 +2,40 @@ plugins {
     id "java-gradle-plugin"
 }
 
-group 'org.apache.cayenne.gradle'
-version '4.0.M6-SNAPSHOT'
-
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
     mavenLocal()
 }
+
+group 'org.apache.cayenne.plugins'
+version '4.0.M6-SNAPSHOT'
+def cayenneVersion = version
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile group: 'org.apache.cayenne', name: 'cayenne-cgen', version: cayenneVersion
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// generate file with Cayenne version
+task versionFile {
+    def resourceOutputDir = file("$buildDir/resources/main/")
+    doFirst {
+        resourceOutputDir.exists() || resourceOutputDir.mkdirs()
+        // file name must be in sync with GradleCayenneExtension
+        def file = file("$buildDir/resources/main/cayenne.version")
+        file.write(cayenneVersion.toString())
+    }
+}
+
+processResources.dependsOn versionFile
 
 publishing {
     publications {
@@ -22,11 +43,4 @@ publishing {
             from components.java
         }
     }
-}
-
-dependencies {
-    compile gradleApi()
-    compile localGroovy()
-    compile group: 'org.apache.cayenne', name: 'cayenne-cgen', version: version
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

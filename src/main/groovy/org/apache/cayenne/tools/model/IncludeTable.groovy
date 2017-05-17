@@ -17,6 +17,10 @@ class IncludeTable extends PatternParam {
         super(pattern)
     }
 
+    void name(String name) {
+        pattern = name
+    }
+
     void includeColumn(String pattern) {
         includeColumns.add(new PatternParam(pattern))
     }
