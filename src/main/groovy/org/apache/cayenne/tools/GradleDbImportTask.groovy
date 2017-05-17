@@ -1,25 +1,34 @@
 package org.apache.cayenne.tools
 
 import org.apache.cayenne.dbsync.reverse.dbimport.ReverseEngineering
-import org.apache.cayenne.tools.model.DataSource
+import org.apache.cayenne.tools.model.DataSourceConfig
 import org.apache.cayenne.tools.model.DbImportConfig
 import org.gradle.api.DefaultTask
+import org.gradle.api.InvalidUserDataException
 import org.gradle.api.tasks.TaskAction
 
 /**
  * @since 4.0
  */
-class DbImportTask extends DefaultTask {
+class GradleDbImportTask extends DefaultTask {
 
     String map
 
-    DataSource dataSource = new DataSource()
+    DataSourceConfig dataSource = new DataSourceConfig()
 
     DbImportConfig config = new DbImportConfig()
 
     @TaskAction
     def runImport() {
+        dataSource.validate()
         ReverseEngineering rr = config.toReverseEngineering()
+
+        if(map == null) {
+            throw new InvalidUserDataException("Missing required 'map' parameter.")
+        }
+        File mapFile = getProject().file(map)
+        // TODO: import
+
         println rr.toString()
     }
 

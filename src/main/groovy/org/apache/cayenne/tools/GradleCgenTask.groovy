@@ -10,7 +10,7 @@ import org.gradle.api.tasks.TaskAction
 /**
  * @since 4.0
  */
-class CgenTask extends DefaultTask {
+class GradleCgenTask extends DefaultTask {
 
     private static final File[] NO_FILES = new File[0]
 
@@ -50,7 +50,7 @@ class CgenTask extends DefaultTask {
 
     private boolean createPropertyNames
 
-    CgenTask() {
+    GradleCgenTask() {
         destDir = getProject().projectDir
         client = false
         makePairs = true
