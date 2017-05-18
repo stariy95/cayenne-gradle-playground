@@ -33,10 +33,8 @@ dependencies {
 Cayenne Gradle plugin exports object ``cayenne`` that you can call in your `build.gradle` script.
 
 This object have following methods:
-- ``addDependencies(String... additionalModules)`` add required Cayenne dependencies with version corresponding to plugin
-- ``addDependenciesToConfiguration(String configurationName, String... cayenneModules)`` add required Cayenne dependencies 
-into desired configuration with version corresponding to plugin
-- ``defaultDataMap`` set DataMap that will be used in all tasks by default 
+- ``dependency(String module)`` create dependency for the Cayenne module
+- property``defaultDataMap`` set DataMap that will be used in all tasks by default 
 
 
 ## Tasks
