@@ -18,10 +18,13 @@ buildscript {
 // apply Cayenne plugin
 apply plugin: 'org.apache.cayenne'
 
-// finally configure Cayenne
-cayenne {
-    addDependencies 'server', 'java8'
-    defaultDataMap 'datamap.map.xml'
+// set default DataMap
+cayenne.defaultDataMap 'datamap.map.xml'
+
+// add required dependencies to your project
+dependencies {
+    compile cayenne.dependency('server')
+    compile cayenne.dependency('java8')
 }
 ```
 
