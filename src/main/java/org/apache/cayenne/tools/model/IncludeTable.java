@@ -30,10 +30,6 @@ public class IncludeTable extends PatternParam {
         includeColumns.add(new PatternParam(pattern));
     }
 
-    public void includeColumn(Closure<?> closure) {
-        includeColumns.add(ConfigureUtil.configure(closure, new PatternParam()));
-    }
-
     public void includeColumns(String... patterns) {
         for(String pattern: patterns) {
             includeColumn(pattern);
@@ -42,10 +38,6 @@ public class IncludeTable extends PatternParam {
 
     public void excludeColumn(String pattern) {
         excludeColumns.add(new PatternParam(pattern));
-    }
-
-    public void excludeColumn(Closure<?> closure) {
-        excludeColumns.add(ConfigureUtil.configure(closure, new PatternParam()));
     }
 
     public void excludeColumns(String... patterns) {

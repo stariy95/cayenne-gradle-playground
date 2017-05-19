@@ -52,10 +52,6 @@ public class FilterContainer {
         addToCollection(excludeTables, pattern);
     }
 
-    public void excludeTable(Closure<?> closure) {
-        addToCollection(excludeTables, closure);
-    }
-
     public void excludeTables(String... patterns) {
         for(String pattern: patterns) {
             excludeTable(pattern);
@@ -64,10 +60,6 @@ public class FilterContainer {
 
     public void includeColumn(String pattern) {
         addToCollection(includeColumns, pattern);
-    }
-
-    public void includeColumn(Closure<?> closure) {
-        addToCollection(includeColumns, closure);
     }
 
     public void includeColumns(String... patterns) {
@@ -80,10 +72,6 @@ public class FilterContainer {
         addToCollection(excludeColumns, pattern);
     }
 
-    public void excludeColumn(Closure<?> closure) {
-        addToCollection(excludeColumns, closure);
-    }
-
     public void excludeColumns(String... patterns) {
         for(String pattern: patterns) {
             excludeColumn(pattern);
@@ -92,10 +80,6 @@ public class FilterContainer {
 
     public void includeProcedure(String pattern) {
         addToCollection(includeProcedures, pattern);
-    }
-
-    public void includeProcedure(Closure<?> closure) {
-        addToCollection(includeProcedures, closure);
     }
 
     public void includeProcedures(String... patterns) {
@@ -108,18 +92,10 @@ public class FilterContainer {
         addToCollection(excludeProcedures, pattern);
     }
 
-    public void excludeProcedure(Closure<?> closure) {
-        addToCollection(excludeProcedures, closure);
-    }
-
     public void excludeProcedures(String... patterns) {
         for(String pattern: patterns) {
             excludeProcedure(pattern);
         }
-    }
-
-    private static void addToCollection(Collection<PatternParam> collection, Closure<?> closure) {
-        collection.add(ConfigureUtil.configure(closure, new PatternParam()));
     }
 
     private static void addToCollection(Collection<PatternParam> collection, String name) {

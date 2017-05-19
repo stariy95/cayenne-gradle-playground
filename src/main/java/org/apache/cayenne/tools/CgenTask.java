@@ -39,12 +39,15 @@ public class CgenTask extends BaseCayenneTask {
     private File destDir;
 
     @Input
+    @Optional
     private String encoding;
 
     @Input
+    @Optional
     private String excludeEntities;
 
     @Input
+    @Optional
     private String includeEntities;
 
     @Input

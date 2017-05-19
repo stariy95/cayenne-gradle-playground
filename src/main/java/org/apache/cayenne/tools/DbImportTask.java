@@ -16,6 +16,8 @@ import org.apache.cayenne.di.Injector;
 import org.apache.cayenne.tools.model.DataSourceConfig;
 import org.apache.cayenne.tools.model.DbImportConfig;
 import org.apache.cayenne.util.Util;
+import org.gradle.api.Task;
+import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.OutputFile;
@@ -37,6 +39,16 @@ public class DbImportTask extends BaseCayenneTask {
     private DbImportConfig config = new DbImportConfig();
 
     private ReverseEngineering reverseEngineering;
+
+    public DbImportTask() {
+        // this task should be executed every invocation, so it is never up to date.
+        getOutputs().upToDateWhen(new Spec<Task>() {
+            @Override
+            public boolean isSatisfiedBy(Task task) {
+                return false;
+            }
+        });
+    }
 
     @TaskAction
     public void runImport() {
