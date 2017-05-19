@@ -73,13 +73,13 @@ Sample configuration:
 ```groovy
 cdbimport {
 
-    map = 'datamap.map.xml'
+    map 'datamap.map.xml'
     
     dataSource {
-        driver = 'com.mysql.cj.jdbc.Driver'
-        url = 'jdbc:mysql://127.0.0.1:3306/test?useSSL=false'
-        username = 'root'
-        password = 'root'
+        driver 'com.mysql.cj.jdbc.Driver'
+        url 'jdbc:mysql://127.0.0.1:3306/test?useSSL=false'
+        username 'root'
+        password 'root'
     }
 
     dbImport {
@@ -116,10 +116,9 @@ cdbimport {
 
         includeProcedure 'procedure_test_1'
 
-        includeColumn 'id'
-        //includeColumns ['id', 'version']
+        includeColumns 'id', 'version'
 
-        tableTypes = ['TABLE', 'VIEW']
+        tableTypes 'TABLE', 'VIEW'
     }
 }
 ```
