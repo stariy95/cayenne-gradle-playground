@@ -31,6 +31,10 @@ public class SchemaContainer extends FilterContainer {
         schemas.add(ConfigureUtil.configure(closure, new FilterContainer()));
     }
 
+    public void schema(String name, Closure<?> closure) {
+        schemas.add(ConfigureUtil.configure(closure, new FilterContainer(name)));
+    }
+
     Catalog toCatalog() {
         Catalog catalog = fillContainer(new Catalog());
         for(FilterContainer container : schemas) {

@@ -14,11 +14,10 @@ group 'org.apache.cayenne.plugins'
 version '4.0.M6-SNAPSHOT'
 def cayenneVersion = version
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
 
 dependencies {
     compile gradleApi()
-    compile localGroovy()
     compile group: 'org.apache.cayenne', name: 'cayenne-cgen', version: cayenneVersion
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
@@ -36,10 +35,10 @@ task versionFile {
 
 processResources.dependsOn versionFile
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-}
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            from components.java
+//        }
+//    }
+//}

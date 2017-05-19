@@ -88,9 +88,16 @@ cdbimport {
 
         catalog {
             name 'catalog-3'
-            includeTable 'table0'
-            includeTable 'table4'
-            //includeTables ['table1', 'table2', 'table3']
+            
+            includeTable 'table0', {
+                excludeColumns '_column_'
+            }
+            
+            includeTables 'table1', 'table2', 'table3'
+            
+            includeTable 'table4', {
+                includeColumns 'id', 'type', 'data' 
+            }
 
             excludeTable '^GENERATED_.*'
         }

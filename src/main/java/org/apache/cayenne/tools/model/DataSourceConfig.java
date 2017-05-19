@@ -1,5 +1,7 @@
 package org.apache.cayenne.tools.model;
 
+import java.io.Serializable;
+
 import org.gradle.api.InvalidUserDataException;
 
 /**

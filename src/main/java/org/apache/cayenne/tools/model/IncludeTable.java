@@ -34,7 +34,7 @@ public class IncludeTable extends PatternParam {
         includeColumns.add(ConfigureUtil.configure(closure, new PatternParam()));
     }
 
-    public void includeColumns(Collection<String> patterns) {
+    public void includeColumns(String... patterns) {
         for(String pattern: patterns) {
             includeColumn(pattern);
         }
@@ -48,7 +48,7 @@ public class IncludeTable extends PatternParam {
         excludeColumns.add(ConfigureUtil.configure(closure, new PatternParam()));
     }
 
-    public void excludeColumns(Collection<String> patterns) {
+    public void excludeColumns(String... patterns) {
         for(String pattern: patterns) {
             excludeColumn(pattern);
         }
