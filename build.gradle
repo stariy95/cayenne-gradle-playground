@@ -16,6 +16,15 @@ def cayenneVersion = version
 
 sourceCompatibility = 1.7
 
+gradlePlugin {
+    plugins {
+        cayennePlugin {
+            id  = 'org.apache.cayenne'
+            implementationClass = 'org.apache.cayenne.tools.GradlePlugin'
+        }
+    }
+}
+
 dependencies {
     compile gradleApi()
     compile group: 'org.apache.cayenne', name: 'cayenne-cgen', version: cayenneVersion
