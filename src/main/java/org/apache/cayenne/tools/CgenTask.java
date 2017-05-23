@@ -136,8 +136,12 @@ public class CgenTask extends BaseCayenneTask {
         return additionalMaps.listFiles(mapFilter);
     }
 
-    private ClassGenerationAction createGenerator() {
-        ClassGenerationAction action = client ? new ClientClassGenerationAction() : new ClassGenerationAction();
+    ClassGenerationAction newGeneratorInstance() {
+        return client ? new ClientClassGenerationAction() : new ClassGenerationAction();
+    }
+
+    ClassGenerationAction createGenerator() {
+        ClassGenerationAction action = newGeneratorInstance();
 
         action.setDestDir(getDestDirFile());
         action.setEncoding(encoding);

@@ -21,6 +21,7 @@ public class BaseTaskIT {
 
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
+
     protected File projectDir;
 
     @Before
@@ -31,32 +32,14 @@ public class BaseTaskIT {
     protected GradleRunner createRunner(String projectName, String... args) throws IOException {
         prepareBuildScript(projectName);
 
-        GradleRunner runner = GradleRunner.create()
-                .withProjectDir(projectDir)
-                .withPluginClasspath()
-                .forwardOutput();
-
         List<String> gradleArguments = new ArrayList<>();
         gradleArguments.addAll(Arrays.asList(args));
         gradleArguments.add("--stacktrace");
-        gradleArguments.add("-PpluginClasspath=" + createClasspath(runner));
 
-        return runner.withArguments(gradleArguments);
-    }
-
-    private String createClasspath(GradleRunner runner) {
-        List<? extends File> classPath = runner.getPluginClasspath();
-        boolean first = true;
-        StringBuilder sb = new StringBuilder();
-        for(File nextDep : classPath) {
-            if(first) {
-                first = false;
-            } else {
-                sb.append(",");
-            }
-            sb.append(nextDep.getAbsolutePath());
-        }
-        return sb.toString();
+        return GradleRunner.create()
+                .withProjectDir(projectDir)
+                .withPluginClasspath()
+                .withArguments(gradleArguments);
     }
 
     private void prepareBuildScript(String name) throws IOException {

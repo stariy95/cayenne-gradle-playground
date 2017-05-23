@@ -1,9 +1,8 @@
 plugins {
     id "java-gradle-plugin"
+    id "java"
+    id "maven-publish"
 }
-
-apply plugin: 'java'
-apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
@@ -28,6 +27,8 @@ gradlePlugin {
 dependencies {
     compile gradleApi()
     compile group: 'org.apache.cayenne', name: 'cayenne-cgen', version: cayenneVersion
+    // derby actually used for tests, but it is very hard to pass this dep elsewhere
+    compile group: 'org.apache.derby', name: 'derby', version: '10.12.1.1'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.7.22'
 }
@@ -44,11 +45,3 @@ task versionFile {
 }
 
 processResources.dependsOn versionFile
-
-//publishing {
-//    publications {
-//        mavenJava(MavenPublication) {
-//            from components.java
-//        }
-//    }
-//}

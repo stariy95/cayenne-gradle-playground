@@ -1,7 +1,3 @@
-buildscript {
-    dependencies {
-        classpath files(pluginClasspath.split(','))
-    }
+plugins {
+    id 'org.apache.cayenne'
 }
-
-apply plugin: 'org.apache.cayenne'

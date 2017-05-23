@@ -1,15 +1,6 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath files(pluginClasspath.split(','))
-        classpath group: 'org.apache.derby', name: 'derby', version: '10.12.1.1'
-    }
+plugins {
+    id 'org.apache.cayenne'
 }
-
-apply plugin: 'org.apache.cayenne'
 
 cdbimport {
     map 'datamap.map.xml'
