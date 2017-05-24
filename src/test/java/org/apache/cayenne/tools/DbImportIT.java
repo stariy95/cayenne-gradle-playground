@@ -35,9 +35,7 @@ import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * @since 4.0
@@ -53,7 +51,7 @@ public class DbImportIT extends BaseTaskIT {
         assertNotNull(result.task(":cdbimport"));
         assertEquals(TaskOutcome.FAILED, result.task(":cdbimport").getOutcome());
 
-        assertTrue(result.getOutput().contains("No datamap found in task or in cayenne.defaultDataMap"));
+        assertTrue(result.getOutput().contains("No datamap configured in task or in cayenne.defaultDataMap"));
     }
 
     @Test
@@ -88,6 +86,8 @@ public class DbImportIT extends BaseTaskIT {
         assertTrue(result.getOutput().contains("Db Relationship : toOne  (EXHIBIT.GALLERY_ID, GALLERY.GALLERY_ID)"));
         assertTrue(result.getOutput().contains("Db Relationship : toMany (GALLERY.GALLERY_ID, PAINTING.GALLERY_ID)"));
         assertTrue(result.getOutput().contains("Create Table         ARTIST"));
+        assertFalse(result.getOutput().contains("Create Table         PAINTING1"));
+        assertTrue(result.getOutput().contains("Skip relation: '.APP.ARTIST.ARTIST_ID <- .APP.PAINTING1.ARTIST_ID # 1'"));
         assertTrue(result.getOutput().contains("Migration Complete Successfully."));
     }
 
