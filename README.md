@@ -63,7 +63,19 @@ task clientCgen(type: cayenne.cgen) {
 Configure default `cdbgen` task:
 ```groovy
 cdbgen {
-    
+    dataSource {
+        driver 'org.apache.derby.jdbc.EmbeddedDriver'
+        url 'jdbc:derby:build/testdb;create=true'
+        username 'sa'
+        password ''
+    }
+
+    dropTables true
+    dropPk true
+
+    createTables true
+    createPk false
+    createFk true
 }
 ```
 
