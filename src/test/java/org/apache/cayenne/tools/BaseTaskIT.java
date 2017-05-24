@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,6 +66,6 @@ public class BaseTaskIT {
         String projectFileSrc = getClass().getResource(name + ".gradle").getFile();
         Path src = FileSystems.getDefault().getPath(projectFileSrc);
         Path dst = FileSystems.getDefault().getPath(projectDir.getAbsolutePath(), "build.gradle");
-        Files.copy(src, dst);
+        Files.copy(src, dst, StandardCopyOption.REPLACE_EXISTING);
     }
 }
